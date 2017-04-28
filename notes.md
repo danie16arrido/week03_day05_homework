@@ -1,6 +1,6 @@
 ~~create db~~
 
-Create tables
+~~Create tables~~
 
 Create Classes
 
