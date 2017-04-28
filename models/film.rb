@@ -1,6 +1,6 @@
 
 
-clas Film
+class Film
 
   def initialize(params)
     @id = params['id'] if params['id']
