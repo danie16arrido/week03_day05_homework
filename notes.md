@@ -1,4 +1,4 @@
-Create db
+~~create db~~
 
 Create tables
 
@@ -11,5 +11,3 @@ test clasess
 add CRUD to classes
 
 Extra:
-
-
