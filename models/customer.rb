@@ -26,7 +26,8 @@ class Customer
     sql = "
     UPDATE customers SET
     (name, funds) =
-    ('#{name}', #{funds});
+    ('#{name}', #{funds})
+    WHERE id = #{@id};
     "
   end
 
@@ -35,5 +36,16 @@ class Customer
     DELETE FROM customers WHERE id = #{@id};
     "
     SqlRunner.run(sql)
+  end
+
+  def Customer.all()
+    sql = "
+    SELECT * FROM customers;
+    "
+    return Customer.get_many(sql)
+  end
+  def Customer.get_many(sql)
+    customers = SqlRunner.run(sql)
+    return customers.map { |customer| Customer.new(customer)}
   end
 end
