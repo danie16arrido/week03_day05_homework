@@ -20,7 +20,20 @@ class Customer
     "
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
-
   end
 
+  def update()
+    sql = "
+    UPDATE customers SET
+    (name, funds) =
+    ('#{name}', #{funds});
+    "
+  end
+
+  def delete()
+    sql = "
+    DELETE FROM customers WHERE id = #{@id};
+    "
+    SqlRunner.run(sql)
+  end
 end
