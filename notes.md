@@ -8,6 +8,6 @@
 
 ~~test clasess~~
 
-~~add CRUD to classes~~
+~~gitadd CRUD to classes~~
 
 Extra:

@@ -1,4 +1,4 @@
-
+require_relative('./film.rb')
 
 class Customer
 
@@ -45,6 +45,19 @@ class Customer
     "
     result = SqlRunner.run(sql)
     return Customer.new(result.first)
+  end
+
+  def films()
+    sql ="
+    SELECT f.* FROM customers c
+    INNER JOIN tickets t
+    ON t.customer_id = c.id
+    INNER JOIN films f
+    ON f.id = t.film_id
+    WHERE c.id = #{@id}
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |film| Film.new(film)}
   end
 
   def Customer.all()
