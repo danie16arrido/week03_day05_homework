@@ -32,6 +32,6 @@ CREATE TABLE films_screenings(
   id SERIAL4 PRIMARY KEY,
   film_id INT4 REFERENCES films(id) ON DELETE CASCADE,
   screening_id INT4 REFERENCES screenings(id) ON DELETE CASCADE,
-  start TIME
-
+  start_time TIME,
+  finish_time TIME
 );

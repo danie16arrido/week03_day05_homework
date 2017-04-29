@@ -3,6 +3,7 @@ require_relative('../models/film.rb')
 require_relative('../models/customer.rb')
 require_relative('../models/ticket.rb')
 require_relative('../models/screening.rb')
+require_relative('../models/film_screening.rb')
 require_relative('../db/sql_runner.rb')
 
 
@@ -27,6 +28,12 @@ ticket3.save()
 
 screening1 = Screening.new({"screening_date" => "21 04 2017"})
 # screening1.save()
+data = {}
+data['film_id'] = 1
+data['screening_id'] = 1
+data['start_time'] = '12:00'
+data['finish_time'] = '15:00'
+film_screening1 = FilmScreening.new(data)
 
 def buy_ticket(customer, film)
   ticket_details = create_ticket_data(customer, film)
