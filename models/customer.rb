@@ -29,6 +29,7 @@ class Customer
     ('#{name}', #{funds})
     WHERE id = #{@id};
     "
+    SqlRunner.run(sql)
   end
 
   def delete()
@@ -38,12 +39,22 @@ class Customer
     SqlRunner.run(sql)
   end
 
+  def Customer.find_by_id(id)
+    sql = "
+    SELECT * FROM customers WHERE id = #{id};
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |customer| Customer.new(customer) }
+
+  end
+
   def Customer.all()
     sql = "
     SELECT * FROM customers;
     "
     return Customer.get_many(sql)
   end
+
   def Customer.get_many(sql)
     customers = SqlRunner.run(sql)
     return customers.map { |customer| Customer.new(customer)}
