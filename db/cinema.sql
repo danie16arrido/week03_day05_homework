@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS tickets;
 DROP TABLE IF EXISTS customers;
--- DROP TABLE IF EXISTS films_screenings;
+DROP TABLE IF EXISTS films_screenings;
 DROP TABLE IF EXISTS films;
 DROP TABLE IF EXISTS screenings;
 
@@ -25,11 +25,13 @@ CREATE TABLE tickets(
 
 CREATE TABLE screenings(
   id SERIAL4 PRIMARY KEY,
-  screening_date  TIMESTAMP WITH TIME ZONE UNIQUE
+  screening_date DATE UNIQUE
 );
 
--- CREATE TABLE films_screenings(
---   id SERIAL4 PRIMARY KEY,
---   film_id INT4 REFERENCES films(id) ON DELETE CASCADE,
---   screening_id INT4 REFERENCES screenings(id) ON DELETE CASCADE
--- );
+CREATE TABLE films_screenings(
+  id SERIAL4 PRIMARY KEY,
+  film_id INT4 REFERENCES films(id) ON DELETE CASCADE,
+  screening_id INT4 REFERENCES screenings(id) ON DELETE CASCADE,
+  start TIME
+
+);

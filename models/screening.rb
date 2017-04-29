@@ -38,7 +38,7 @@ class Screening
   def update()
     sql = "
     UPDATE screenings SET
-    (screening_date) = (to_timestamp('#{@screening_date}', 'DD MM YYYY'))
+    (screening_date) = ('#{@screening_date}')
     WHERE id = #{@id};
     "
     SqlRunner.run(sql)
