@@ -72,7 +72,7 @@ class Film
     WHERE film_id = #{@id};
     "
     result = SqlRunner.run(sql)
-    return result.map { |fs| FilmScreening.new(fs).start_time}
+    return result.map { |film_screening| FilmScreening.new(film_screening).start_time}
   end
 
   def Film.all()

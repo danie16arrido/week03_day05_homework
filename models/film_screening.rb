@@ -21,4 +21,22 @@ class FilmScreening
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
   end
+
+  def update()
+    sql = "
+    UPDATE films_screenings SET
+    (film_id, screening_id, start_time, finish_time) =
+    (#{@film_id}, #{@screening_id}, '#{@start_time}', '#{@finish_time}')
+    WHERE id = #{@id};
+    "
+    SqlRunner.run(sql)
+  end
+
+  def FilmScreening.all()
+    sql = "
+    SELECT * FROM films_screenings;
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |film_screening| FilmScreening.new(film_screening) }
+  end
 end
