@@ -34,6 +34,9 @@ data['screening_id'] = 1
 data['start_time'] = '12:00'
 data['finish_time'] = '15:00'
 film_screening1 = FilmScreening.new(data)
+film_screening2 = FilmScreening.new(data)
+film_screening2.film_id = 2
+film_screening2.save()
 
 def buy_ticket(customer, film)
   ticket_details = create_ticket_data(customer, film)

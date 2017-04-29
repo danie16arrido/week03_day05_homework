@@ -1,4 +1,5 @@
 require_relative('./customer.rb')
+require_relative('./film_screening.rb')
 
 class Film
 
@@ -63,6 +64,15 @@ class Film
 
   def how_many_customers()
     return customers().count()
+  end
+
+  def showing_times()
+    sql = "
+    SELECT start_time FROM films_screenings
+    WHERE film_id = #{@id};
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |fs| FilmScreening.new(fs).start_time}
   end
 
   def Film.all()
