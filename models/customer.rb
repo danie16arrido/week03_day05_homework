@@ -1,4 +1,5 @@
 require_relative('./film.rb')
+require_relative('./ticket.rb')
 
 class Customer
 
@@ -58,6 +59,14 @@ class Customer
     "
     result = SqlRunner.run(sql)
     return result.map { |film| Film.new(film)}
+  end
+
+  def tickets()
+    sql = "
+    SELECT * FROM tickets WHERE customer_id = #{@id};
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |ticket| Ticket.new(ticket)}
   end
 
   def Customer.all()
