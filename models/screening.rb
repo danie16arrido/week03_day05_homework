@@ -34,4 +34,13 @@ class Screening
     result = SqlRunner.run(sql)
     return result.map { |screening| Screening.new(screening)}
   end
+
+  def update()
+    sql = "
+    UPDATE screenings SET
+    (screening_date) = (to_timestamp('#{@screening_date}', 'DD MM YYYY'))
+    WHERE id = #{@id};
+    "
+    SqlRunner.run(sql)
+  end
 end
