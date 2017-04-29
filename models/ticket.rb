@@ -39,7 +39,14 @@ class Ticket
     "
     SqlRunner.run(sql)
   end
-  
+
+  def Ticket.find_by_id(id)
+    sql = "
+    SELECT * FROM tickets WHERE id = #{id};
+    "
+    result = SqlRunner.run(sql)
+    return Ticket.new(result.first)
+  end
 
   def Ticket.all()
     sql = "
