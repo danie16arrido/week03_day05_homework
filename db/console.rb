@@ -24,5 +24,26 @@ ticket1.save()
 ticket2.save()
 ticket3.save()
 
+def buy_ticket(customer, film)
+  ticket_details = create_ticket_data(customer, film)
+  ticket = Ticket.new(ticket_details)
+
+  charge_for(film.price, customer)
+  customer.update()
+
+  ticket.save()
+end
+
+def create_ticket_data(customer, film)
+  data = {}
+  data["customer_id"] = customer.id
+  data["film_id"] = film.id
+  return data
+end
+
+def charge_for(amount, customer)
+  customer.funds -= amount
+end
+
 binding.pry
 nil
