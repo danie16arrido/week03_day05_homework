@@ -54,7 +54,7 @@ class Customer
     ON t.customer_id = c.id
     INNER JOIN films f
     ON f.id = t.film_id
-    WHERE c.id = #{@id}
+    WHERE c.id = #{@id};
     "
     result = SqlRunner.run(sql)
     return result.map { |film| Film.new(film)}
