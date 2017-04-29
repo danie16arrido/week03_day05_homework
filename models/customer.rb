@@ -69,6 +69,10 @@ class Customer
     return result.map { |ticket| Ticket.new(ticket)}
   end
 
+  def how_many_tickets()
+    return tickets().count()
+  end
+
   def Customer.all()
     sql = "
     SELECT * FROM customers;

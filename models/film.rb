@@ -61,6 +61,10 @@ class Film
     return result.map { |customer| Customer.new(customer)}
   end
 
+  def how_many_customers()
+    return customers().count()
+  end
+
   def Film.all()
     sql ="
     SELECT * FROM films;
