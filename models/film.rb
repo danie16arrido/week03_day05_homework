@@ -40,6 +40,14 @@ class Film
     SqlRunner.run(sql)
   end
 
+  def Film.find_by_id(id)
+    sql = "
+    SELECT * FROM films WHERE id = #{id};
+    "
+    result = SqlRunner.run(sql)
+    return Film.new(result.first)
+  end
+
   def Film.all()
     sql ="
     SELECT * FROM films;

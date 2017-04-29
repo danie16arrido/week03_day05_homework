@@ -44,8 +44,7 @@ class Customer
     SELECT * FROM customers WHERE id = #{id};
     "
     result = SqlRunner.run(sql)
-    return result.map { |customer| Customer.new(customer) }
-
+    return Customer.new(result.first)
   end
 
   def Customer.all()
