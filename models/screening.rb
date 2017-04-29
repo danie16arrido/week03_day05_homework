@@ -1,6 +1,10 @@
 
 
 class Screening
+
+  attr_reader :id
+  attr_accessor :screening_date
+
   def initialize(params)
     @id = params['id'] if params['id']
     @screening_date = params['screening_date']
@@ -21,5 +25,13 @@ class Screening
     DELETE FROM screenings WHERE id = #{@id};
     "
     SqlRunner.run(sql)
+  end
+
+  def Screening.all()
+    sql = "
+    SELECT * FROM screenings;
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |screening| Screening.new(screening)}
   end
 end
