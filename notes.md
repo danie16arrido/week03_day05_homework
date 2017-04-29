@@ -4,10 +4,10 @@
 
 ~~Create Classes~~
 
-Create console
+~~Create consolei~~
 
-test clasess
+~~test clasess~~
 
-add CRUD to classes
+~~add CRUD to classes~~
 
 Extra:
