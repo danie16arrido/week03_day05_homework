@@ -3,7 +3,7 @@
 class Screening
   def initialize(params)
     @id = params['id'] if params['id']
-    @screening_date = params['date']
+    @screening_date = params['screening_date']
   end
 
   def save()
@@ -15,5 +15,11 @@ class Screening
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
   end
+
+  def delete()
+    sql = "
+    DELETE FROM screenings WHERE id = #{@id};
+    "
+    SqlRunner.run(sql)
+  end
 end
-# to_timestamp('05 Dec 2000', 'DD Mon YYYY')

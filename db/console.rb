@@ -25,6 +25,9 @@ ticket1.save()
 ticket2.save()
 ticket3.save()
 
+screening1 = Screening.new({"screening_date" => "21 04 2017"})
+screening1.save()
+
 def buy_ticket(customer, film)
   ticket_details = create_ticket_data(customer, film)
   ticket = Ticket.new(ticket_details)
