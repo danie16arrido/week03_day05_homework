@@ -33,11 +33,11 @@ class Film
     SqlRunner.run(sql)
   end
 
-  # def delete()
-  #   sql = "
-  #   DELETE * FROM films WHERE id = #{@id};
-  #   "
-  #   SqlRunner.run(sql)
-  # end
+  def delete()
+    sql = "
+    DELETE * FROM films WHERE id = #{@id};
+    "
+    SqlRunner.run(sql)
+  end
 
 end
