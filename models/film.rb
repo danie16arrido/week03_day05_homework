@@ -75,6 +75,23 @@ class Film
     return result.map { |film_screening| FilmScreening.new(film_screening).start_time}
   end
 
+  def popular_time()
+    sql = "
+    SELECT s.start_time from tickets t
+    INNER JOIN screenings s
+    on t.screening_id = s.id
+    WHERE s.film_id = #{@id};
+    "
+    result = SqlRunner.run(sql)
+    #map array to have this form ["12:00", "18:00", "12:00"]
+    times_array = result.map { |screening| screening['start_time']}
+    return get_most_ocurrences(times_array)
+  end
+
+  def get_most_ocurrences(eval_array)
+    eval_array.max_by { |i| eval_array.count(i) }
+  end
+
   def Film.all()
     sql ="
     SELECT * FROM films;
