@@ -1,5 +1,3 @@
-
-
 class Ticket
 
   attr_reader :id

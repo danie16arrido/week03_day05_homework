@@ -1,5 +1,3 @@
-
-
 class Screening
 
   attr_reader :id
@@ -68,5 +66,5 @@ class Screening
   def remaining_sits()
     return @capacity - @tickets_sold
   end
-  
+
 end

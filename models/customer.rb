@@ -86,4 +86,5 @@ class Customer
     customers = SqlRunner.run(sql)
     return customers.map { |customer| Customer.new(customer)}
   end
+  
 end
