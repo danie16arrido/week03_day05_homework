@@ -3,7 +3,7 @@
 class Screening
 
   attr_reader :id
-  attr_accessor :screening_date
+  attr_accessor :film_id, :screening_date, :start_time, :finish_time
 
   def initialize(params)
     @id = params['id'] if params['id']
@@ -17,9 +17,9 @@ class Screening
   def save()
     sql = "
     INSERT INTO screenings
-    (film_id, start_time, finish_time)
+    (film_id, start_time, finish_time, screening_date)
     VALUES
-    (#{@film_id}, '#{@start_time}', '#{@finish_time}')
+    (#{@film_id}, '#{@start_time}', '#{@finish_time}', to_date('#{@screening_date}', 'DD MM YYYY'))
     RETURNING id;
     "
     result = SqlRunner.run(sql)

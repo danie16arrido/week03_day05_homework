@@ -26,8 +26,9 @@ data = {}
 data['film_id'] = film1.id
 data['start_time'] = '12:00'
 data['finish_time'] = '15:00'
-# data['screening_date'] = '1 1 2000'
-screening1 = FilmScreening.new(data)
+data['screening_date'] = "1 3 2009"
+
+screening1 = Screening.new(data)
 
 # film_screening2 = FilmScreening.new(data)
 # film_screening2.start_time = '18:00'
