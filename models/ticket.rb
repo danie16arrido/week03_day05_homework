@@ -3,18 +3,20 @@
 class Ticket
 
   attr_reader :id
-  attr_accessor :customer_id, :film_id
+  attr_accessor :customer_id, :screening_id, :bought_on
 
   def initialize(params)
     @id = params['id'] if params['id']
     @customer_id = params['customer_id']
     @screening_id = params['screening_id']
+    @bought_on = params['bought_on'] if params['bought_on']
+
   end
 
   def save()
     sql = "
     INSERT INTO tickets
-    (customer_id, film_id)
+    (customer_id, screening_id)
     VALUES
     (#{@customer_id}, #{@screening_id})
     RETURNING id;
@@ -26,7 +28,7 @@ class Ticket
   def update()
     sql = "
     UPDATE tickets SET
-    (customer_id, film_id) =
+    (customer_id, screening_id) =
     (#{@customer_id}, #{@screening_id})
     WHERE id = #{@id};
     "

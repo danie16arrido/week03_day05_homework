@@ -29,13 +29,14 @@ data['finish_time'] = '15:00'
 data['screening_date'] = "1 3 2009"
 
 screening1 = Screening.new(data)
+screening1.save()
 
 # film_screening2 = FilmScreening.new(data)
 # film_screening2.start_time = '18:00'
 # film_screening2.finish_time = '21:00'
 # film_screening2.save()
 
-# ticket1 = Ticket.new( {"film_id" => film1.id, "customer_id" => customer1.id} )
+ticket1 = Ticket.new( {"customer_id" => customer1.id, "screening_id" => screening1.id} )
 # ticket2 = Ticket.new( {"film_id" => film2.id, "customer_id" => customer2.id} )
 # ticket3 = Ticket.new( {"film_id" => film2.id, "customer_id" => customer1.id} )
 # ticket1.save()
