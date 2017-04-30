@@ -45,26 +45,32 @@ ticket1 = Ticket.new( {"customer_id" => customer1.id, "screening_id" => screenin
 
 
 
-def buy_ticket(customer, film)
-  ticket_details = create_ticket_data(customer, film)
-  ticket = Ticket.new(ticket_details)
 
-  charge_for(film.price, customer)
+
+def buy_ticket(customer, screening)
+  ticket_details = create_ticket_data(customer, screening)
+  ticket = Ticket.new(ticket_details)
+  film = Film.find_by_id(screening.film_id)
+
+
+  charge_for(film.price.to_f, customer)
   customer.update()
 
   ticket.save()
 end
 
-def create_ticket_data(customer, film)
+def create_ticket_data(customer, screening)
   data = {}
   data["customer_id"] = customer.id
-  data["film_id"] = film.id
+  data["screening_id"] = screening.id
   return data
 end
 
 def charge_for(amount, customer)
   customer.funds -= amount
 end
+
+buy_ticket(customer2, screening1)
 
 binding.pry
 nil
