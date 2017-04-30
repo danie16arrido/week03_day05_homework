@@ -8,7 +8,7 @@ class Ticket
   def initialize(params)
     @id = params['id'] if params['id']
     @customer_id = params['customer_id']
-    @film_id = params['film_id']
+    @screening_id = params['screening_id']
   end
 
   def save()
@@ -16,7 +16,7 @@ class Ticket
     INSERT INTO tickets
     (customer_id, film_id)
     VALUES
-    (#{@customer_id}, #{@film_id})
+    (#{@customer_id}, #{@screening_id})
     RETURNING id;
     "
     result = SqlRunner.run(sql)
@@ -27,7 +27,7 @@ class Ticket
     sql = "
     UPDATE tickets SET
     (customer_id, film_id) =
-    (#{@customer_id}, #{@film_id})
+    (#{@customer_id}, #{@screening_id})
     WHERE id = #{@id};
     "
     SqlRunner.run(sql)

@@ -19,24 +19,29 @@ film2 = Film.new({"title" => "Batman", "price" => 14.99})
 film1.save()
 film2.save()
 
-ticket1 = Ticket.new( {"film_id" => film1.id, "customer_id" => customer1.id} )
-ticket2 = Ticket.new( {"film_id" => film2.id, "customer_id" => customer2.id} )
-ticket3 = Ticket.new( {"film_id" => film2.id, "customer_id" => customer1.id} )
-ticket1.save()
-ticket2.save()
-ticket3.save()
 
-screening1 = Screening.new({"screening_date" => "21 04 2017"})
-# screening1.save()
+
+
 data = {}
-data['film_id'] = 1
-data['screening_id'] = 1
+data['film_id'] = film1.id
 data['start_time'] = '12:00'
 data['finish_time'] = '15:00'
-film_screening1 = FilmScreening.new(data)
-film_screening2 = FilmScreening.new(data)
-film_screening2.film_id = 2
-film_screening2.save()
+# data['screening_date'] = '1 1 2000'
+screening1 = FilmScreening.new(data)
+
+# film_screening2 = FilmScreening.new(data)
+# film_screening2.start_time = '18:00'
+# film_screening2.finish_time = '21:00'
+# film_screening2.save()
+
+# ticket1 = Ticket.new( {"film_id" => film1.id, "customer_id" => customer1.id} )
+# ticket2 = Ticket.new( {"film_id" => film2.id, "customer_id" => customer2.id} )
+# ticket3 = Ticket.new( {"film_id" => film2.id, "customer_id" => customer1.id} )
+# ticket1.save()
+# ticket2.save()
+# ticket3.save()
+
+
 
 def buy_ticket(customer, film)
   ticket_details = create_ticket_data(customer, film)

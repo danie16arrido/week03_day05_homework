@@ -7,13 +7,19 @@ class Screening
 
   def initialize(params)
     @id = params['id'] if params['id']
+    @film_id = params['film_id']
     @screening_date = params['screening_date']
+    @start_time = params['start_time']
+    @finish_time = params['finish_time']
+    # @tickets_sold = 0
   end
 
   def save()
     sql = "
     INSERT INTO screenings
-    (screening_date) VALUES (to_timestamp('#{@screening_date}', 'DD MM YYYY'))
+    (film_id, start_time, finish_time)
+    VALUES
+    (#{@film_id}, '#{@start_time}', '#{@finish_time}')
     RETURNING id;
     "
     result = SqlRunner.run(sql)

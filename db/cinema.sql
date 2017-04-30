@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS tickets;
 DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS films_screenings;
-DROP TABLE IF EXISTS films;
 DROP TABLE IF EXISTS screenings;
+DROP TABLE IF EXISTS films;
 
 CREATE TABLE customers (
   id SERIAL4 PRIMARY KEY,
@@ -16,22 +15,18 @@ CREATE TABLE films(
   price NUMERIC(5,2)
 );
 
+CREATE TABLE screenings(
+  id SERIAL4 PRIMARY KEY,
+  film_id INT4 REFERENCES films(id),
+  start_time TIME,
+  finish_time TIME,
+  screening_date DATE,
+  tickets_sold INT4
+);
+
 CREATE TABLE tickets(
   id SERIAL4 PRIMARY KEY,
   customer_id INT4 REFERENCES customers(id) ON DELETE CASCADE,
-  film_id INT4 REFERENCES films(id) ON DELETE CASCADE,
-  bought_on TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
-);
-
-CREATE TABLE screenings(
-  id SERIAL4 PRIMARY KEY,
-  screening_date DATE UNIQUE
-);
-
-CREATE TABLE films_screenings(
-  id SERIAL4 PRIMARY KEY,
-  film_id INT4 REFERENCES films(id) ON DELETE CASCADE,
   screening_id INT4 REFERENCES screenings(id) ON DELETE CASCADE,
-  start_time TIME,
-  finish_time TIME
+  bought_on TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
