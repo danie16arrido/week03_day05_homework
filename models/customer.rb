@@ -48,18 +48,20 @@ class Customer
     return Customer.new(result.first)
   end
 
-  # def films()
-  #   sql ="
-  #   SELECT f.* FROM customers c
-  #   INNER JOIN tickets t
-  #   ON t.customer_id = c.id
-  #   INNER JOIN films f
-  #   ON f.id = t.film_id
-  #   WHERE c.id = #{@id};
-  #   "
-  #   result = SqlRunner.run(sql)
-  #   return result.map { |film| Film.new(film)}
-  # end
+  def films()
+    sql ="
+    SELECT f.* FROM tickets t
+    INNER JOIN customers c
+    ON t.customer_id = c.id
+    INNER JOIN screenings s
+    ON s.id = t.screening_id
+    INNER JOIN films f
+    on f.id =  s.film_id
+    WHERE c.id = #{@id};
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |film| Film.new(film)}
+  end
 
   def tickets()
     sql = "

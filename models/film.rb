@@ -66,14 +66,14 @@ class Film
     return customers().count()
   end
 
-  # def showing_times()
-  #   sql = "
-  #   SELECT start_time FROM films_screenings
-  #   WHERE film_id = #{@id};
-  #   "
-  #   result = SqlRunner.run(sql)
-  #   return result.map { |film_screening| FilmScreening.new(film_screening).start_time}
-  # end
+  def showing_times()
+    sql = "
+    SELECT start_time FROM screenings s
+    WHERE s.film_id = #{@id};
+    "
+    result = SqlRunner.run(sql)
+    return result.map { |film_screening| FilmScreening.new(film_screening).start_time}
+  end
 
   def Film.all()
     sql ="
