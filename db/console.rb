@@ -27,7 +27,7 @@ data['film_id'] = film1.id
 data['start_time'] = '12:00'
 data['finish_time'] = '15:00'
 data['screening_date'] = "1 3 2009"
-
+data['capacity'] = 200
 screening1 = Screening.new(data)
 screening1.save()
 
@@ -35,6 +35,7 @@ data['film_id'] = film1.id
 data['start_time'] = '18:00'
 data['finish_time'] = '21:00'
 data['screening_date'] = "1 3 2009"
+data['capacity'] = 122
 screening2 = Screening.new(data)
 screening2.save()
 
@@ -45,6 +46,9 @@ def buy_ticket(customer, screening)
 
   charge_for(film.price.to_f, customer)
   customer.update()
+
+  screening.capacity -= 1
+  screening.update
 
   ticket.save()
 end

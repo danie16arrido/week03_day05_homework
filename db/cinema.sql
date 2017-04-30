@@ -21,7 +21,8 @@ CREATE TABLE screenings(
   start_time TIME,
   finish_time TIME,
   screening_date DATE,
-  tickets_sold INT4
+  tickets_sold INT4,
+  capacity INT4
 );
 
 CREATE TABLE tickets(
