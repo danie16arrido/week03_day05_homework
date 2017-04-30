@@ -3,7 +3,6 @@ require_relative('../models/film.rb')
 require_relative('../models/customer.rb')
 require_relative('../models/ticket.rb')
 require_relative('../models/screening.rb')
-require_relative('../models/film_screening.rb')
 require_relative('../db/sql_runner.rb')
 
 
@@ -46,8 +45,8 @@ def buy_ticket(customer, screening)
 
   charge_for(film.price.to_f, customer)
   customer.update()
-
-  screening.capacity -= 1
+  
+  screening.tickets_sold +=1
   screening.update
 
   ticket.save()

@@ -3,7 +3,8 @@
 class Screening
 
   attr_reader :id
-  attr_accessor :film_id, :screening_date, :start_time, :finish_time, :capacity
+  attr_accessor :film_id, :screening_date, :start_time,
+                :finish_time, :tickets_sold, :capacity
 
   def initialize(params)
     @id = params['id'] if params['id']
@@ -63,4 +64,9 @@ class Screening
     "
     SqlRunner.run(sql)
   end
+
+  def remaining_sits()
+    return @capacity - @tickets_sold
+  end
+  
 end
