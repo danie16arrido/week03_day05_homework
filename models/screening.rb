@@ -11,15 +11,19 @@ class Screening
     @screening_date = params['screening_date']
     @start_time = params['start_time']
     @finish_time = params['finish_time']
-    # @tickets_sold = 0
+    @tickets_sold = 0
   end
 
   def save()
     sql = "
     INSERT INTO screenings
-    (film_id, start_time, finish_time, screening_date)
-    VALUES
-    (#{@film_id}, '#{@start_time}', '#{@finish_time}', to_date('#{@screening_date}', 'DD MM YYYY'))
+    (film_id, start_time, finish_time, screening_date, tickets_sold)
+    VALUES (
+    #{@film_id},
+    '#{@start_time}',
+    '#{@finish_time}',
+    to_date('#{@screening_date}', 'DD MM YYYY'),
+    #{@tickets_sold})
     RETURNING id;
     "
     result = SqlRunner.run(sql)
@@ -44,7 +48,14 @@ class Screening
   def update()
     sql = "
     UPDATE screenings SET
-    (screening_date) = ('#{@screening_date}')
+    (film_id, start_time, finish_time, screening_date, tickets_sold) =
+    (
+      #{@film_id},
+      '#{@start_time}',
+      '#{@finish_time}',
+      to_date('#{@screening_date}', 'DD MM YYYY'),
+      #{@tickets_sold}
+    )
     WHERE id = #{@id};
     "
     SqlRunner.run(sql)
